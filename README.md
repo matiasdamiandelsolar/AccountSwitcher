@@ -1,5 +1,6 @@
 # AltSwitcher
-![](https://github.com/matiasdamiandelsolar/AltSwitcher/blob/main/icon.png)
+
+![](https://github.com/matiasdamiandelsolar/AccountSwitcher/blob/main/icon.png)
 
 AltSwitcher is a powerful plugin for PocketMine-MP that allows you to switch between multiple accounts without having to log out and back in.
 
