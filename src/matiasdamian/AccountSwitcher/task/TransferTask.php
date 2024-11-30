@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher\task;
+namespace matiasdamian\AccountSwitcher\task;
 
 use pocketmine\scheduler\Task;
 use pocketmine\player\Player;
 
-use matiasdamian\AltSwitcher\PluginConfiguration;
+use matiasdamian\AccountSwitcher\PluginConfiguration;
 
 class TransferTask extends Task{
 	/** @var PluginConfiguration  */

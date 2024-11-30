@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher;
+namespace matiasdamian\AccountSwitcher;
 
 use pocketmine\utils\Config;
 

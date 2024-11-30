@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher\command\handler;
+namespace matiasdamian\AccountSwitcher\command\handler;
 
-use matiasdamian\AltSwitcher\command\AccountCommand;
-use matiasdamian\AltSwitcher\account\Account;
-use matiasdamian\AltSwitcher\account\AccountGroup;
-use matiasdamian\AltSwitcher\Main;
-use matiasdamian\AltSwitcher\task\TransferTask;
+use matiasdamian\AccountSwitcher\command\AccountCommand;
+use matiasdamian\AccountSwitcher\account\Account;
+use matiasdamian\AccountSwitcher\account\AccountGroup;
+use matiasdamian\AccountSwitcher\Main;
+use matiasdamian\AccountSwitcher\task\TransferTask;
 use matiasdamian\LangManager\LangManager;
 use pocketmine\player\Player;
 

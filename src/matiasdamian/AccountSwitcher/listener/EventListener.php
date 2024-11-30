@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher\listener;
+namespace matiasdamian\AccountSwitcher\listener;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerLoginEvent;
@@ -12,7 +12,7 @@ use pocketmine\player\XboxLivePlayerInfo;
 use pocketmine\permission\BanList;
 use Ramsey\Uuid\Uuid;
 
-use matiasdamian\AltSwitcher\Main;
+use matiasdamian\AccountSwitcher\Main;
 
 class EventListener implements Listener{
 	

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher\account;
+namespace matiasdamian\AccountSwitcher\account;
 
 class Account{
 	private string $username;

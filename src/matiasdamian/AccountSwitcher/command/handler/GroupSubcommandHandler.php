@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher\command\handler;
+namespace matiasdamian\AccountSwitcher\command\handler;
 
-use matiasdamian\AltSwitcher\command\AccountCommand;
-use matiasdamian\AltSwitcher\Main;
+use matiasdamian\AccountSwitcher\command\AccountCommand;
+use matiasdamian\AccountSwitcher\Main;
 use matiasdamian\LangManager\LangManager;
 use pocketmine\player\Player;
 use pocketmine\player\IPlayer;

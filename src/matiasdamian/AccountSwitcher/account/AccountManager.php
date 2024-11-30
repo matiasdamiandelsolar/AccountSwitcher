@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher\account;
+namespace matiasdamian\AccountSwitcher\account;
 
 use pocketmine\utils\Config;
 use pocketmine\player\Player;
 
-use matiasdamian\AltSwitcher\Main;
+use matiasdamian\AccountSwitcher\Main;
 
 class AccountManager{
 	/** @var AccountGroup[] */

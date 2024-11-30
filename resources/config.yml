@@ -1,4 +1,4 @@
-# Configuration file for AltSwitcher
+# Configuration file for AccountSwitcher
 account-switch:
 
   # Should players be transferred to a server when they switch accounts? (true/false)

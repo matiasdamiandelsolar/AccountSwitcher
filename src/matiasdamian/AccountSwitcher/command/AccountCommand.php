@@ -2,28 +2,30 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher\command;
+namespace matiasdamian\AccountSwitcher\command;
 
-use matiasdamian\AltSwitcher\account\Account;
+use matiasdamian\AccountSwitcher\account\Account;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
+use pocketmine\plugin\PluginOwnedTrait;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 
-use matiasdamian\AltSwitcher\Main;
-use matiasdamian\AltSwitcher\account\AccountGroup;
-use matiasdamian\AltSwitcher\command\handler\GroupSubcommandHandler;
-use matiasdamian\AltSwitcher\command\handler\ManageSubcommandHandler;
-use matiasdamian\AltSwitcher\task\TransferTask;
+use matiasdamian\AccountSwitcher\Main;
+use matiasdamian\AccountSwitcher\account\AccountGroup;
+use matiasdamian\AccountSwitcher\command\handler\GroupSubcommandHandler;
+use matiasdamian\AccountSwitcher\command\handler\ManageSubcommandHandler;
+use matiasdamian\AccountSwitcher\task\TransferTask;
 
 use matiasdamian\LangManager\LangManager;
 
 use jojoe77777\FormAPI\SimpleForm;
 use jojoe77777\FormAPI\CustomForm;
 
-class AccountCommand extends Command{
-	/** @var Main */
-	private readonly Main $plugin;
+class AccountCommand extends Command implements PluginOwned{
+	use PluginOwnedTrait;
 	
 	/** @var GroupSubcommandHandler  */
 	private readonly GroupSubcommandHandler $groupSubcommandHandler;
@@ -39,12 +41,16 @@ class AccountCommand extends Command{
 	 * @param Main $plugin The main plugin instance.
 	 */
 	public function __construct(Main $plugin){
-		$this->plugin = $plugin;
-		parent::__construct("account", "Allows you to switch between accounts without logging out of Xbox Live", "/account", ["alts"]);
+		$this->owningPlugin = $plugin;
+		parent::__construct("account", "Allows you to switch between accounts without logging out of Xbox Live", "/account", ["alt"]);
 		$this->setPermission("altswitcher.command");
 		$this->setLanguageDefaults();
 		$this->groupSubcommandHandler = new GroupSubcommandHandler($this);
 		$this->manageSubcommandHandler = new ManageSubcommandHandler($this);
+	}
+	
+	public function getOwningPlugin(): Plugin{
+		return $this->owningPlugin;
 	}
 	
 	/**
@@ -53,7 +59,7 @@ class AccountCommand extends Command{
 	 * @return Main The plugin instance.
 	 */
 	public function getPlugin(): Main{
-		return $this->plugin;
+		return $this->getOwningPlugin();
 	}
 	
 	/**

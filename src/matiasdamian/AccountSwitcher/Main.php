@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AltSwitcher;
+namespace matiasdamian\AccountSwitcher;
 
 use pocketmine\plugin\PluginBase;
 
-use matiasdamian\AltSwitcher\account\AccountManager;
-use matiasdamian\AltSwitcher\command\AccountCommand;
-use matiasdamian\AltSwitcher\listener\EventListener;
+use matiasdamian\AccountSwitcher\account\AccountManager;
+use matiasdamian\AccountSwitcher\command\AccountCommand;
+use matiasdamian\AccountSwitcher\listener\EventListener;
 use jojoe77777\FormAPI\FormAPI;
 
 class Main extends PluginBase{
