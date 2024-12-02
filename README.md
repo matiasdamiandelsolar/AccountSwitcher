@@ -1,4 +1,4 @@
-# AltSwitcher
+# AccountSwitcher
 
 ![](https://github.com/matiasdamiandelsolar/AccountSwitcher/blob/main/icon.png)
 
@@ -28,7 +28,7 @@ Offers a wide range of configurable options such as transfer server and alt limi
 
 ## Configuration file
 ```yml
-# Configuration file for AltSwitcher
+# Configuration file for AccountSwitcher
 account-switch:
   
   # Should players be transferred to a server when they switch accounts? (true/false)
