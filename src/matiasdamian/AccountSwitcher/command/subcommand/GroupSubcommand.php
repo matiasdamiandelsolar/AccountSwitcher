@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AccountSwitcher\command\handler;
+namespace matiasdamian\AccountSwitcher\command\subcommand;
 
 use matiasdamian\AccountSwitcher\command\AccountCommand;
 use matiasdamian\AccountSwitcher\Main;
@@ -13,7 +13,7 @@ use pocketmine\player\IPlayer;
 use jojoe77777\FormAPI\SimpleForm;
 use jojoe77777\FormAPI\CustomForm;
 
-class GroupSubcommandHandler{
+class GroupSubcommand{
 	/** @var AccountCommand */
 	private readonly AccountCommand $command;
 	

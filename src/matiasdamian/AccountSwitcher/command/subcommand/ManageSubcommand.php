@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace matiasdamian\AccountSwitcher\command\handler;
+namespace matiasdamian\AccountSwitcher\command\subcommand;
 
 use pocketmine\player\Player;
 
@@ -12,14 +12,14 @@ use matiasdamian\AccountSwitcher\account\AccountGroup;
 use matiasdamian\AccountSwitcher\Main;
 use matiasdamian\AccountSwitcher\task\TransferTask;
 
-use matiasdamian\AccountSwitcher\command\handler\MainCommandHandler;
+use matiasdamian\AccountSwitcher\command\subcommand\MainCommandHandler;
 
 use matiasdamian\LangManager\LangManager;
 
 use jojoe77777\FormAPI\SimpleForm;
 use jojoe77777\FormAPI\CustomForm;
 
-class ManageSubcommandHandler{
+class ManageSubcommand{
 	/** @var AccountCommand */
 	private readonly AccountCommand $command;
 	

@@ -13,15 +13,24 @@ use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 
 use matiasdamian\AccountSwitcher\Main;
-use matiasdamian\AccountSwitcher\command\handler\MainCommandHandler;;
+use matiasdamian\AccountSwitcher\command\subcommand\GroupSubcommand;
+use matiasdamian\AccountSwitcher\command\subcommand\ManageSubcommand;
 
 use matiasdamian\LangManager\LangManager;
+use jojoe77777\FormAPI\SimpleForm;
 
 class AccountCommand extends Command implements PluginOwned{
 	use PluginOwnedTrait;
 	
-	/** @var MainCommandHandler */
-	private readonly MainCommandHandler $mainCommandHandler;
+	/** @var AccountCommand */
+	private readonly AccountCommand $accountCommand;
+	/** @var ManageSubcommand  */
+	private readonly ManageSubcommand $manageSubcommand;
+	/** @var GroupSubcommand  */
+	private readonly GroupSubcommand $groupSubcommand;
+	
+	public const SUBCOMMAND_MANAGE = "manage";
+	public const SUBCOMMAND_GROUP = "group";
 	
 	/**
 	 * @param Main $plugin The main plugin instance.
@@ -32,7 +41,8 @@ class AccountCommand extends Command implements PluginOwned{
 		$this->setPermission("altswitcher.command");
 		$this->setLanguageDefaults();
 		
-		$this->mainCommandHandler = new MainCommandHandler($this);
+		$this->groupSubcommand = new GroupSubcommand($this);
+		$this->manageSubcommand = new ManageSubcommand($this);
 	}
 	
 	public function getOwningPlugin(): Plugin{
@@ -91,8 +101,44 @@ class AccountCommand extends Command implements PluginOwned{
 		if($group === null){
 			return false;
 		}
+		return $this->handleMainCommand($sender, $args);
+	}
+	
+	private function handleMainCommand(Player $player, array $args) : bool{
+		$action = $args[0] ?? "";
+		return match (strtolower($action)) {
+			self::SUBCOMMAND_MANAGE => $this->manageSubcommand->execute($player, $args),
+			self::SUBCOMMAND_GROUP => $this->groupSubcommand->execute($player, $args),
+			default => $this->sendMainForm($player, $args)
+		};
+	}
+	
+	/**
+	 * Sends the main form to the player.
+	 *
+	 * @param Player $player
+	 * @param array $args
+	 * @return bool
+	 */
+	public function sendMainForm(Player $player, array $args = []): bool{
+		$form = new SimpleForm(function(Player $player, ?string $action){
+			if(is_string($action)){
+				$this->handleMainCommand($player, [$action]);
+			}
+		});
+		$group = $this->getPlugin()->getAccountManager()->getAccountGroup($player->getName());
 		
-		return $this->mainCommandHandler->execute($sender, $args);
+		$form->setTitle(LangManager::translate("altswitcher-title", $player));
+		$form->setContent(LangManager::translate("altswitcher-desc", $player));
+		
+		if(count($group->getAccounts()) > 1){
+			$form->addButton(LangManager::translate("altswitcher-manage", $player), -1, "", self::SUBCOMMAND_MANAGE);
+			return true;
+		}
+		$form->addButton(LangManager::translate("altswitcher-group", $player), -1, "", self::SUBCOMMAND_GROUP);
+		
+		$player->sendForm($form);
+		return true;
 	}
 	
 }
