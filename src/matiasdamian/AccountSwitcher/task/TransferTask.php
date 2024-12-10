@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace matiasdamian\AccountSwitcher\task;
 
-use pocketmine\scheduler\Task;
+use matiasdamian\AccountSwitcher\config\Config;
 use pocketmine\player\Player;
-
-use matiasdamian\AccountSwitcher\PluginConfiguration;
+use pocketmine\scheduler\Task;
 
 class TransferTask extends Task{
-	/** @var PluginConfiguration  */
-	private PluginConfiguration $configuration;
+	/** @var Config  */
+	private Config $configuration;
 	/** @var Player  */
 	private Player $player;
 	
 	/**
-	 * @param PluginConfiguration $configuration
+	 * @param Config $configuration
 	 * @param Player $player
 	 */
-	public function __construct(PluginConfiguration $configuration, Player $player){
+	public function __construct(Config $configuration, Player $player){
 		$this->configuration = $configuration;
 		$this->player = $player;
 	}

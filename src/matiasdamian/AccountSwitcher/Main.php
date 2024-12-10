@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace matiasdamian\AccountSwitcher;
 
-use pocketmine\plugin\PluginBase;
-
+use jojoe77777\FormAPI\FormAPI;
 use matiasdamian\AccountSwitcher\account\AccountManager;
 use matiasdamian\AccountSwitcher\command\AccountCommand;
+use matiasdamian\AccountSwitcher\config\Config;
 use matiasdamian\AccountSwitcher\listener\EventListener;
-use jojoe77777\FormAPI\FormAPI;
+use pocketmine\plugin\PluginBase;
 
 class Main extends PluginBase{
 	/** @var AccountManager|null */
 	private ?AccountManager $accountManager = null;
 	
-	/** @var PluginConfiguration|null */
-	private ?PluginConfiguration $pluginConfiguration = null;
+	/** @var Config|null */
+	private ?Config $pluginConfiguration = null;
 	
 	/**
 	 * Get the AccountManager instance.
@@ -30,9 +30,9 @@ class Main extends PluginBase{
 	/**
 	 * Retrieves the plugin configuration instance.
 	 *
-	 * @return PluginConfiguration|null Returns the PluginConfiguration instance if loaded, or null if not.
+	 * @return Config|null Returns the PluginConfiguration instance if loaded, or null if not.
 	 */
-	public function getConfiguration(): ?PluginConfiguration{
+	public function getConfiguration(): ?Config{
 		return $this->pluginConfiguration;
 	}
 	
@@ -49,7 +49,7 @@ class Main extends PluginBase{
 		$this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
 		$this->getServer()->getCommandMap()->register("altswitcher", new AccountCommand($this));
 		
-		$this->pluginConfiguration = new PluginConfiguration($this);
+		$this->pluginConfiguration = new Config($this);
 		$this->accountManager = new AccountManager($this);
 		
 		$this->getLogger()->info("Plugin enabled.");
