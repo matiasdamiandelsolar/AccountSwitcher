@@ -32,12 +32,12 @@ class Config{
 	private function loadConfigValues(): void{
 		try{
 			$this->settings = [
-				ConfigKeys::TRANSFER_ON_SWITCH => (bool)$this->getConfigValue(ConfigKeys::TRANSFER_ON_SWITCH, false),
-				ConfigKeys::SERVER_IP => (string)$this->getConfigValue(ConfigKeys::SERVER_IP, ""),
-				ConfigKeys::SERVER_PORT => (int)$this->getConfigValue(ConfigKeys::SERVER_PORT, 19132),
-				ConfigKeys::ALLOW_UNGROUP => (bool)$this->getConfigValue(ConfigKeys::ALLOW_UNGROUP, false),
-				ConfigKeys::MAX_GROUP_SIZE => (int)$this->getConfigValue(ConfigKeys::MAX_GROUP_SIZE, 10),
-				ConfigKeys::BAN_ALT_ACCOUNTS => (bool)$this->getConfigValue(ConfigKeys::BAN_ALT_ACCOUNTS, false)
+				ConfigKeys::TRANSFER_ON_SWITCH->getConfigKey() => (bool)$this->getConfigValue(ConfigKeys::TRANSFER_ON_SWITCH->getConfigKey(), false),
+				ConfigKeys::SERVER_IP->getConfigKey() => (string)$this->getConfigValue(ConfigKeys::SERVER_IP->getConfigKey(), ""),
+				ConfigKeys::SERVER_PORT->getConfigKey() => (int)$this->getConfigValue(ConfigKeys::SERVER_PORT->getConfigKey(), 19132),
+				ConfigKeys::ALLOW_UNGROUP->getConfigKey() => (bool)$this->getConfigValue(ConfigKeys::ALLOW_UNGROUP->getConfigKey(), false),
+				ConfigKeys::MAX_GROUP_SIZE->getConfigKey() => (int)$this->getConfigValue(ConfigKeys::MAX_GROUP_SIZE->getConfigKey(), 10),
+				ConfigKeys::BAN_ALT_ACCOUNTS->getConfigKey() => (bool)$this->getConfigValue(ConfigKeys::BAN_ALT_ACCOUNTS->getConfigKey(), false)
 			];
 			
 			$this->validateServerIp();
@@ -67,7 +67,7 @@ class Config{
 	private function validateServerIp(): void{
 		$serverIp = $this->getServerIp();
 		if(empty($serverIp) || !filter_var($serverIp, FILTER_VALIDATE_IP)){
-			throw new ConfigLoadException("'" . ConfigKeys::SERVER_IP . "' must be a valid IP address or hostname");
+			throw new ConfigLoadException("'" . ConfigKeys::SERVER_IP->getConfigKey() . "' must be a valid IP address or hostname");
 		}
 	}
 	
@@ -79,7 +79,7 @@ class Config{
 	private function validateServerPort(): void{
 		$serverPort = $this->getServerPort();
 		if($serverPort < 1 || $serverPort > 65535){
-			throw new ConfigLoadException("'" . ConfigKeys::SERVER_PORT . "' must be a valid port number between 1 and 65535");
+			throw new ConfigLoadException("'" . ConfigKeys::SERVER_PORT->getConfigKey() . "' must be a valid port number between 1 and 65535");
 		}
 	}
 	
@@ -108,7 +108,7 @@ class Config{
 	 * @return string The server IP address.
 	 */
 	public function getServerIp(): string{
-		return $this->get(ConfigKeys::SERVER_IP);
+		return $this->get(ConfigKeys::SERVER_IP->getConfigKey());
 	}
 	
 	/**
@@ -117,7 +117,7 @@ class Config{
 	 * @return int The server port.
 	 */
 	public function getServerPort(): int{
-		return $this->get(ConfigKeys::SERVER_PORT);
+		return $this->get(ConfigKeys::SERVER_PORT->getConfigKey());
 	}
 	
 	/**
@@ -126,7 +126,7 @@ class Config{
 	 * @return bool True if transfer is enabled, false otherwise.
 	 */
 	public function isTransferOnSwitch(): bool{
-		return $this->get(ConfigKeys::TRANSFER_ON_SWITCH);
+		return $this->get(ConfigKeys::TRANSFER_ON_SWITCH->getConfigKey());
 	}
 	
 	/**
@@ -135,7 +135,7 @@ class Config{
 	 * @return bool True if ungrouping is allowed, false otherwise.
 	 */
 	public function isAllowUngroup(): bool{
-		return $this->get(ConfigKeys::ALLOW_UNGROUP);
+		return $this->get(ConfigKeys::ALLOW_UNGROUP->getConfigKey());
 	}
 	
 	/**
@@ -144,7 +144,7 @@ class Config{
 	 * @return int The maximum number of accounts per group.
 	 */
 	public function getMaxGroupSize(): int{
-		return $this->get(ConfigKeys::MAX_GROUP_SIZE);
+		return $this->get(ConfigKeys::MAX_GROUP_SIZE->getConfigKey());
 	}
 	
 	/**
@@ -153,7 +153,7 @@ class Config{
 	 * @return bool True if banning is enabled, false otherwise.
 	 */
 	public function isBanAltAccounts(): bool{
-		return $this->get(ConfigKeys::BAN_ALT_ACCOUNTS);
+		return $this->get(ConfigKeys::BAN_ALT_ACCOUNTS->getConfigKey());
 	}
 	
 }
